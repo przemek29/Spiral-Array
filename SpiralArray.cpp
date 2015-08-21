@@ -2,38 +2,55 @@
 //
 
 #include "stdafx.h"
+#include <math.h>
 #include <iostream>
 #include <iomanip>
 using namespace std;
 
-void makeSpiralArray (int lastValue)
+void initialConditions(int value)
 {
-  if (lastValue <= 0)
+	if (value <= 0)
   {
     cout << "The value should be greater than \"0\" " << endl;
     return;
   }
 
-  if (lastValue == 1)
+  if (value == 1)
   {
-    cout << lastValue << endl;
+    cout << value << endl;
     return;
   }
+}
 
-  int size = 1, 
-      centerOfArray,
-      factor = 0;
-
-  while (size <= lastValue)
+int determineSize (int value)
+{
+	int size = 1,
+		factor = 0;
+	 
+	while (size <= value)
   {
     factor++;
     size = (2 * factor + 1) * (2 * factor + 1);
-    centerOfArray = 2 * factor + 1;
   }
+	return size;
+}
 
-  int row, column,
-      currentNumber = 1,
-      currentCell = 0;
+int getFactor(int centerOfArray)
+{
+	return ((centerOfArray - 1) / 2);
+}
+
+void makeSpiralArray (int lastValue)
+{
+  //initialConditions(lastValue);
+
+   int size = determineSize(lastValue);
+   int centerOfArray = sqrt((double) size);
+   int factor = getFactor(centerOfArray);
+
+   int row, column,
+       currentNumber = 1,
+       currentCell = 0;
 
   int *tab = new int[size];
 
