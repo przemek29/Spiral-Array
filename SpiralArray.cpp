@@ -40,6 +40,26 @@ int getFactor(int centerOfArray)
 	return ((centerOfArray - 1) / 2);
 }
 
+void printArray (int row, int column, int centerOfArray, int tab[])
+{
+	for(row = 0; row < centerOfArray; row++)
+  {
+    for (column = 0; column < centerOfArray; column++)
+    {
+      if (tab[row * centerOfArray + column] != 0)
+      {
+        cout << setw(4) << tab[row * centerOfArray + column] << " " ;
+      }
+      else
+      {
+      cout << "     ";
+      }
+    }
+    cout << endl;
+}
+}
+
+
 void makeSpiralArray (int lastValue)
 {
   //initialConditions(lastValue);
@@ -92,24 +112,12 @@ void makeSpiralArray (int lastValue)
     }
     currentNumber++ ;
   }
+  printArray(row,column,centerOfArray,tab);
 
-  for(row = 0; row < centerOfArray; row++)
-  {
-    for (column = 0; column < centerOfArray; column++)
-    {
-      if (tab[row * centerOfArray + column] != 0)
-      {
-        cout << setw(4) << tab[row * centerOfArray + column] << " " ;
-      }
-      else
-      {
-      cout << "     ";
-      }
-    }
-    cout << endl;
-  }
- delete [] tab;
+  delete [] tab;
 }
+
+
 
 int _tmain(int argc, _TCHAR* argv[])
 {
